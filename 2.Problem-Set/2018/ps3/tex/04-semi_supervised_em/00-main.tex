@@ -1,0 +1,62 @@
+\clearpage
+\item \points{30} {\bf Semi-supervised EM}
+
+Expectation Maximization (EM) is a classical algorithm for unsupervised learning (\emph{i.e.,} learning with hidden or latent variables). In this problem we will explore one of the ways in which EM algorithm can be adapted to the semi-supervised setting, where we have some labelled examples along with unlabelled examples.
+
+In the standard unsupervised setting, we have $m \in \mathbb{N}$ unlabelled examples $\{x^{(1)},\ldots,x^{(m)}\}$. We wish to learn the parameters of $p(x,z;\theta)$ from the data, but $z^{(i)}$'s are not observed. The classical EM algorithm is designed for this very purpose, where we maximize the intractable $p(x;\theta)$ indirectly by iteratively performing the E-step and M-step, each time maximizing a tractable lower bound of $p(x;\theta)$. Our objective can be concretely written as:
+
+\begin{align*}
+    \ell_{\text{unsup}}(\theta) &= \sum_{i=1}^m \log p(x^{(i)};\theta) \\
+    &= \sum_{i=1}^m \log \sum_{z^{(i)}} p(x^{(i)},z^{(i)};\theta)
+\end{align*}
+
+
+Now, we will attempt to construct an extension of EM to the semi-supervised setting. Let us suppose we have an \emph{additional} $\tilde{m} \in \mathbb{N}$ labelled examples $\{(x^{(1)},z^{(1)}),\ldots,(x^{(\tilde{m})},z^{(\tilde{m})})\}$ where both $x$ and $z$ are observed. We want to simultaneously maximize the marginal likelihood of the parameters using the unlabelled examples, and full likelihood of the parameters using the labelled examples, by optimizing their weighted sum (with some hyperparameter $\alpha$). More concretely, our semi-supervised objective $\ell_\text{semi-sup}(\theta)$ can be written as:
+%
+\begin{align*}
+    \ell_\text{sup}(\theta) &= \sum_{i=1}^{\tilde{m}} \log p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta) \\
+    \ell_{\text{semi-sup}}(\theta) &= \ell_\text{unsup}(\theta) + \alpha \ell_\text{sup}(\theta)
+\end{align*}
+%
+We can derive the EM steps for the semi-supervised setting using the same approach and steps as before. You are \emph{strongly encouraged} to show to yourself (no need to include in the write-up) that we end up with:
+
+\subsubsection*{E-step (semi-supervised)}
+
+For each $i \in \{1,\ldots,m\}$, set
+\begin{align*}
+    Q_i^{(t)}(z^{(i)}) := p(z^{(i)}|x^{(i)};\theta^{(t)})
+\end{align*}
+
+\subsubsection*{M-step (semi-supervised)}
+
+\begin{align*}
+    \theta^{(t+1)} &:= \arg\max_\theta\left[ \sum_{i=1}^m\left( \sum_{z^{(i)}} Q^{(t)}_i(z^{(i)}) \log \frac{ p(x^{(i)}, z^{(i)};\theta) }{ Q^{(t)}_i(z^{(i)})}\right)  + \alpha \left(\sum_{i=1}^{\tilde{m}} \log p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)\right)\right]
+\end{align*}
+
+\begin{enumerate}
+  \input{04-semi_supervised_em/01-convergence} 
+\end{enumerate}
+
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\subsubsection*{Semi-supervised GMM}
+Now we will revisit the Gaussian Mixture Model (GMM), to apply our semi-supervised EM algorithm. Let us consider a scenario where data is generated from $k \in \mathbb{N}$ Gaussian distributions, with unknown means $\mu_j \in \mathbb{R}^d$ and covariances $\Sigma_j \in \mathbb{S}_+^d$ where $j \in \{1,\ldots,k\}$. We have $m$ data points $x^{(i)} \in \mathbb{R}^d, i \in \{1,\ldots,m\}$, and each data point has a corresponding latent (hidden/unknown) variable $z^{(i)} \in \{1,\ldots,k\}$ indicating which distribution $x^{(i)}$ belongs to. Specifically, $z^{(i)} \sim \text{Multinomial}(\phi)$, such that $\sum_{j=1}^k\phi_j = 1$ and $\phi_j \ge 0$ for all $j$, and $x^{(i)}|z^{(i)} \sim \mathcal{N}\left(\mu_{z^{(i)}}, \Sigma_{z^{(i)}}\right)$ i.i.d. So, $\mu$, $\Sigma$, and $\phi$ are the model parameters.
+
+We also have an additional $\tilde{m}$ data points $\tilde{x}^{(i)} \in \mathbb{R}^d, i \in \{1,\ldots,\tilde{m}\}$, and an associated \emph{observed} variable $\tilde{z} \in \{1,\ldots,k\}$ indicating the distribution $\tilde{x}^{(i)}$ belongs to. Note that $\tilde{z}^{(i)}$ are known constants (in contrast to $z^{(i)}$ which are unknown \emph{random} variables). As before, we assume $\tilde{x}^{(i)}|\tilde{z}^{(i)} \sim \mathcal{N}\left(\mu_{\tilde{z}^{(i)}}, \Sigma_{\tilde{z}^{(i)}}\right)$ i.i.d.
+
+
+In summary we have $m$ + $\tilde{m}$ examples, of which $m$ are unlabelled data points $x$'s with unobserved $z$'s, and $\tilde{m}$ are labelled data points $\tilde{x}^{(i)}$ with corresponding observed labels $\tilde{z}^{(i)}$. The traditional EM algorithm is designed to take only the $m$ unlabelled examples as input, and learn the model parameters $\mu$, $\Sigma$, and $\phi$.
+
+
+Our task now will be to apply the semi-supervised EM algorithm to GMMs in order to leverage the additional $\tilde{m}$ labelled examples, and come up with semi-supervised E-step and M-step update rules specific to GMMs. Whenever required, you can cite the lecture notes for derivations and steps.
+
+
+\begin{enumerate}
+  \setcounter{enumii}{1}
+  \input{04-semi_supervised_em/02-e-step}
+  \input{04-semi_supervised_em/03-m-step}
+  \input{04-semi_supervised_em/04-impl-unsupervised}
+  \input{04-semi_supervised_em/05-impl-semi-supervised}
+  \input{04-semi_supervised_em/06-comparison}
+\end{enumerate}

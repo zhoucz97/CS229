@@ -1,0 +1,55 @@
+\clearpage
+\item \points{15} {\bf Convexity of Generalized Linear Models}
+
+In this question we will explore and show some nice properties of Generalized
+Linear Models, specifically those related to its use of Exponential Family
+distributions to model the output.
+
+Most commonly, GLMs are trained by using the negative log-likelihood (NLL) as
+the loss function. This is mathematically equivalent to Maximum Likelihood
+Estimation (\emph{i.e.,} maximizing the log-likelihood is equivalent to
+minimizing the negative log-likelihood). In this problem, our goal is to show
+that the NLL loss of a GLM is a convex function w.r.t the model parameters. As
+a reminder, this is convenient because a convex function is one for which any
+local minimum is also a global minimum.
+
+To recap, an exponential family distribution is one whose probability density
+can be represented
+%
+\begin{equation*}
+    p(y; \eta) = b(y)\exp(\eta^TT(y) - a(\eta)),
+\end{equation*}
+%
+where $\eta$ is the \emph{natural parameter} of the distribution. Moreover, in
+a Generalized Linear Model, $\eta$ is modeled as $\theta^Tx$, where $x \in
+\mathbb{R}^n$ are the input features of the example, and $\theta \in
+\mathbb{R}^n$ are learnable parameters. In order to show that the NLL loss is
+convex for GLMs, we break down the process into sub-parts, and approach them
+one at a time. Our approach is to show that the second derivative (\emph{i.e.,}
+Hessian) of the loss w.r.t the model parameters is Positive Semi-Definite (PSD)
+at all values of the model parameters. We will also show some nice properties
+of Exponential Family distributions as intermediate steps.
+
+For the sake of convenience we restrict ourselves to the case where $\eta$ is
+a scalar. Assume $p(Y|X;\theta )\sim \text{ExponentialFamily}(\eta)$, where
+$\eta \in\mathbb{R}$ is a scalar, and $T(y) = y$. This makes the exponential
+family representation take the form
+%
+\begin{equation*}
+    p(y ; \eta) = b(y)\exp(\eta y - a(\eta)).
+\end{equation*}
+%
+\begin{enumerate}
+    \input{04-glm-convexity/01-mean}
+    \input{04-glm-convexity/02-var}
+    \input{04-glm-convexity/03-hessian}
+\end{enumerate}
+
+\textbf{Remark:} The main takeaways from this problem are:
+\begin{itemize}
+  \item Any GLM model is convex in its model parameters.
+  \item The exponential family of probability distributions are mathematically
+  nice. Whereas calculating mean and variance of distributions in general
+  involves integrals (hard), surprisingly we can calculate them using
+  derivatives (easy) for exponential family.
+\end{itemize}

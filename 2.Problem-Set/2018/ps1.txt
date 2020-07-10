@@ -1,0 +1,100 @@
+Problem Set 1: Released
+We have released Problem Set 1: ps1.zip. Submissions are due Wednesday 10/17 at 11:59 PM, on Gradescope. As a reminder, you have 7 late days, but no submissions will be accepted after Saturday 10/20 at 11:59 PM.
+
+ 
+
+Please read the following carefully, as we’ve made significant updates to the problem set compared to previous offerings of this course.
+
+ 
+
+Updates
+
+ 
+
+Please re-download ps1.zip for the latest copy.
+
+ 
+
+- [10/17]: The correction in util.plot is applied incorrectly. The correct formula should be x2=-(?0?2+?1?2x1+1?2log(2-aa)). We will accept plots that use either the original equation or the new (correct) equation.
+
+- [10/13]: If you're having issues with the autograder we recommend that you do not save plots in your submission of code (i.e. comment out lines calling util.plot).
+
+- [10/6]: Add clarifications to Problem 4 and updated code comments.
+
+- [10/5]: In p03d_poisson.py, the output of the predict function is the response in the regression problem, it is not necessarily within [0,1].
+
+- [10/4]: Problem 3 (d) (coding question in Poisson regression) is worth 10 points, not 7 points.
+
+- [10/4]: Made typo fixes. Updated comments in the code (esp. important for shapes of inputs/outputs, and whether to expect intercept in predict), updated README.md to reference run.py instead of run_all.sh. Explicitly stated ? is a scalar in problem 4.
+
+ 
+
+Starter Code
+
+ 
+
+This year we have switched to Python for coding parts of assignments. You must use our starter codebase, which is written in Python 3.6+ with the numpy and matplotlib libraries only. Under no circumstances will there be any exceptions to this environment.
+
+ 
+
+Details on how to re-create our environment and complete your assignment are provided in README.md file of the zip file.
+
+ 
+
+Written Components
+
+ 
+
+Our zip file contains starter TeX code for the writeup. Though not mandatory, we strongly suggest you build off of it for your writeup. We include a Makefile for compiling the TeX code locally. However, you may also use an online TeX editor such as Overleaf, in which case you should do the following:
+
+ 
+
+1. Unzip the starter code
+2. Zip the tex folder
+3. When creating a New Project on Overleaf, choose "Upload Project" and upload the zipped tex folder.
+
+ 
+
+Submission Instructions
+
+ 
+
+There are two assignments on Gradescope: Homework 1 and Homework 1 Code. 
+
+ 
+
+Please submit your writeup in PDF form to the Homework 1 assignment, tagging each part separately. Note that some of the coding parts of the homework do not have a corresponding written component, in which case there will be no option for you to tag them.
+
+ 
+
+Please submit your code by running make_zip.py and uploading the file submission.zip to the Homework 1 Code assignment. The auto-grader will immediately run your code on the test sets (budget ~ 5-10 minutes) and check that (1) your code runs successfully, and (2) it produces output files of the correct format. You should receive this feedback immediately, for each subpart that involves coding. We then have additional hidden tests to grade the correctness of your submissions, which will be released after the assignment is due. You can submit as many times as you want before the deadline.
+
+ 
+
+Collaboration
+
+ 
+
+As a reminder, our collaboration policy is the following. While we encourage students to form study groups, each student must write down the solutions independently, and without referring to written notes from the joint session. In addition, each student should write on the problem set the names of people with whom s/he collaborated.
+
+ 
+
+Furthermore, we expect students not to copy, refer to, or look at online solutions to our questions in preparing their answers. It is an honor code violation to intentionally refer to a previous year's solutions. 
+
+ 
+
+Miscellaneous
+
+ 
+
+We've created pinned posts on Piazza to keep discussion for each question organized. Please use these posts to ask for clarifications on the assignment, instead of creating new questions.
+
+ 
+
+Any emailed late submissions that miss the hard deadline of Saturday 10/20 at 11:59 PM will not be entertained, even if only by a minute. This is in the interest of being fair to those who took extra care to submit on time.
+
+ 
+
+ 
+
+We strongly recommend that you start early. Best of luck.

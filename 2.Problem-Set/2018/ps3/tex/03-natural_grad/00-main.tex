@@ -1,0 +1,77 @@
+
+\newcommand{\argminE}{\mathop{\mathrm{argmin}}\limits}          % ASdeL
+\newcommand{\argmaxE}{\mathop{\mathrm{argmax}}\limits}          % ASdeL
+
+\clearpage
+
+\item \points{25} {\bf KL Divergence, Fisher Information, and the Natural Gradient}
+
+As seen before, the Kullback-Leibler divergence between two distributions is an asymmetric measure of how different two distributions are. Consider two distributions over the same space given by densities $p(x)$ and $q(x)$. The KL divergence between two continuous distributions, $q$ and $p$ is defined as,
+ \begin{align*}
+\KL(p||q)&=\int_{-\infty}^{\infty}p(x)\log\dfrac{p(x)}{q(x)}dx\\
+&=\int_{-\infty}^{\infty}p(x)\log p(x)dx-\int_{-\infty}^{\infty}p(x)\log q(x)dx\\
+&=\mathbb{E}_{x\sim p(x)}[\log p(x)]-\mathbb{E}_{x\sim p(x)}[\log q(x)].
+\end{align*}
+
+
+A nice property of KL divergence is that it invariant to parametrization. This means, KL divergence
+evaluates to the same value no matter how we parametrize the distributions $P$ and $Q$. For e.g,
+if $P$ and $Q$ are in the exponential family, the KL divergence between them is the same whether
+we are using natural parameters, or canonical parameters, or any arbitrary reparametrization.
+
+
+Now we consider the problem of fitting model parameters using gradient descent (or stochastic gradient
+descent). As seen previously, fitting model parameters using Maximum Likelihood is equivalent
+to minimizing the KL divergence between the data and the model. While KL divergence is
+invariant to parametrization, the gradient w.r.t the model parameters (i.e, direction
+of steepest descent) is \emph{not invariant to parametrization}. To see its implication, suppose
+we are at a particular value of parameters (either randomly initialized, or mid-way through
+the optimization process). The value of the parameters correspond to some probability distribution
+(and in case of regression, a conditional probability distribution).
+If we follow the direction of steepest descent from the current parameter, take a small step along that
+direction to a new parameter, we end up with a new distribution corresponding to the new parameters.
+The non-invariance to reparametrization means, a step of fixed size in the parameter space could
+end up in a distribution that could either be extremely far away in $\KL$ from the previous
+distribution, or on the other hand not move very much at all w.r.t $\KL$ from the previous
+distributions.
+
+
+This is where the \emph{natural gradient} comes into picture. It is best introduced in contrast
+with the usual gradient descent. In the usual gradient descent, we \emph{first choose the direction}
+by calculating the gradient of the MLE objective w.r.t the parameters, and then move a magnitude of
+step size (where size is measured in the \emph{parameter space}) along that direction. Whereas
+in natural gradient, we \emph{first choose a divergence} amount by which we would like to
+move, in the $\KL$ sense. This effectively gives us a perimeter around the current parameters (of
+some arbitrary shape), such that points along this perimeter correspond to distributions
+which are at an equal $\KL$-distance away from the current parameter. Among the set
+of all distributions along this perimeter, we move to the distribution that maximizes the
+objective (i.e minimize $\KL$ between data and itself) the most. This approach makes the optimization
+process invariant to parametrization. That means, even if we chose a new arbitrary reparametrization,
+by starting from a particular distribution, we always descend down the same sequence of
+distributions towards the optimum.
+
+
+In the rest of this problem, we will construct and derive the natural gradient update rule.
+For that, we will break down the process into smaller sub-problems, and give you hints
+to answer them. Along the way, we will encounter important statistical concepts such
+as the \emph{score function} and \emph{Fisher Information} (which play a prominant role
+in Statistical Learning Theory as well). Finally, we will see how this new natural gradient
+based optimization is actually equivalent to Newton's method for Generalized Linear Models.
+
+
+Let the distribution of a random variable $Y$ parameterized by $\theta \in \mathbb{R}^{n}$ be $p(y;\theta)$.
+
+\begin{enumerate}
+\input{03-natural_grad/01-exp_score}
+
+\input{03-natural_grad/02-cov_score}
+
+\input{03-natural_grad/03-nhess_score}
+
+\input{03-natural_grad/04-kl_taylor}
+
+\input{03-natural_grad/05-lagrange}
+
+\input{03-natural_grad/06-update_rule}
+
+\end{enumerate}

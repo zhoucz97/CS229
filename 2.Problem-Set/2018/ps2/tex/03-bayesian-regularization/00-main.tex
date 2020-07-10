@@ -1,0 +1,51 @@
+\clearpage
+\item \points{20} {\bf Bayesian Interpretation of Regularization}
+
+\textbf{Background: }
+In Bayesian statistics, almost every quantity is a random variable, which
+can either be observed or unobserved. For instance, parameters $\theta$ are
+generally unobserved random variables, and data $x$ and $y$ are observed
+random variables. The joint distribution of all the random variables is
+also called the \emph{model} (\emph{e.g.,} $p(x, y, \theta)$). Every unknown quantity can
+be estimated by conditioning the model on all the observed quantities. Such
+a conditional distribution over the unobserved random variables, conditioned
+on the observed random variables, is called the \emph{posterior distribution}.
+For instance $p(\theta | x, y)$ is the posterior distribution in the
+machine learning context. A consequence of this approach is that we are
+required to endow our model parameters, \emph{i.e.,} $p(\theta)$, with a \emph{prior distribution}.
+The prior probabilities are to be assigned \emph{before} we see the data---they capture our prior beliefs of what the model parameters might be
+before observing any evidence.
+
+In the purest Bayesian interpretation, we are required to keep the entire
+posterior distribution over the parameters all the way until prediction, to
+come up with the \emph{posterior predictive distribution}, and the final prediction
+will be the expected value of the posterior predictive distribution. However
+in most situations, this is computationally very expensive, and we settle for
+a compromise that is \emph{less pure} (in the Bayesian sense).
+
+The compromise is to estimate a point value of the parameters (instead of the
+full distribution) which is the mode of the posterior distribution. Estimating
+the mode of the posterior distribution is also called
+\emph{maximum a posteriori estimation} (MAP). That is, 
+$$\theta_{\text{MAP}} = \arg\max_\theta p(\theta|x,y).$$
+Compare this to the \emph{maximum likelihood estimation} (MLE) we have
+seen previously:
+$$\theta_{\text{MLE}} = \arg\max_\theta p(y|x,\theta).$$
+In this problem, we explore the connection between MAP estimation, and common
+regularization techniques that are applied with MLE estimation.
+In particular, you will show how the choice of prior distribution over $\theta$ (\emph{e.g.,}
+Gaussian or Laplace prior)
+is equivalent to different kinds of regularization (\emph{e.g.,} $L_2$, or $L_1$
+regularization). To show this, we shall proceed step by step, showing intermediate
+steps.
+
+\begin{enumerate}
+    \input{03-bayesian-regularization/01-argmax}
+    \input{03-bayesian-regularization/02-l2}
+    \input{03-bayesian-regularization/03-closed-form}
+    \input{03-bayesian-regularization/04-l1}   
+\end{enumerate}
+
+\textbf{Remark:} Linear regression with $L_2$ regularization is also commonly called \emph{Ridge regression}, and when $L_1$ regularization is employed, is commonly called \emph{Lasso regression}. These regularizations can be applied to any Generalized Linear models just as above (by replacing $\log p(y|x,\theta)$ with the appropriate family likelihood). Regularization techniques of the above type are also called \emph{weight decay}, and \emph{shrinkage}. The Gaussian and Laplace priors encourage the parameter values to be closer to their mean (\emph{i.e.,} zero), which results in the shrinkage effect.
+
+\textbf{Remark:} Lasso regression (\emph{i.e.,} $L_1$ regularization) is known to result in sparse parameters, where most of the parameter values are zero, with only some of them non-zero.

@@ -1,0 +1,13 @@
+\item  \subquestionpoints{5} Recall that $L_2$ regularization penalizes the $L_2$ norm
+of the parameters while minimizing the loss (\emph{i.e.,} negative log likelihood in case of
+probabilistic models).
+Now we will show that MAP estimation with a zero-mean
+Gaussian prior over $\theta$, specifically $\theta \sim \mathcal{N}(0, \eta^2I)$,
+is equivalent to applying $L_2$ regularization with MLE estimation. Specifically,
+show that $$\theta_{\text{MAP}} = \arg\min_\theta - \log p(y|x,\theta) + \lambda||\theta||^2_2.$$
+Also, what is the value of $\lambda$?
+
+
+\ifnum\solutions=1 {
+  \input{03-bayesian-regularization/02-l2-sol}
+} \fi

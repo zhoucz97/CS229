@@ -1,0 +1,22 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item \subquestionpoints{5}
+\textbf{Chain rule for KL divergence.}
+The KL divergence between 2
+    conditional distributions $P(X|Y),Q(X|Y)$ is defined as follows:
+    \[
+    \KL(P(X|Y)\|Q(X|Y)) = \sum_y P(y) \left(\sum_x
+      P(x|y)\log\frac{P(x|y)}{Q(x|y)}\right)
+    \]
+    This can be thought of as the expected KL divergence between the
+    corresponding conditional distributions on $x$ (that is, between
+    $P(X|Y=y)$ and $Q(X|Y=y)$), where the expectation is taken over the
+    random $y$.
+
+    Prove the following chain rule for KL divergence:
+    $$  \KL(P(X,Y)\|Q(X,Y)) = \KL(P(X)\|Q(X)) + \KL(P(Y|X)\|Q(Y|X)). $$ \\
+      
+\ifnum\solutions=1 {
+  \input{02-kl_divergence/02-chain_rule_sol}
+} \fi

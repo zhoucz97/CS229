@@ -1,0 +1,18 @@
+\clearpage
+\item \subquestionpoints{5}
+Suppose we want to estimate $\alpha$ using a trained classifier $h$ and a
+held-out validation set $V$. Let $V_{+}$ be the set of labeled (and hence
+positive) examples in $V$, given by $V_{+} = \{x^{(i)}\in V\mid y^{(i)} = 1\}$.
+Assuming that  $h(x^{(i)})\approx p(y^{(i)} = 1\mid x^{(i)})$ for all
+examples $x^{(i)}$, show that
+%
+\begin{equation*}
+	h(x^{(i)}) \approx \alpha \quad\text{for all } x^{(i)}\in V_{+}.
+\end{equation*}
+%
+You may assume that $p(t^{(i)} = 1\mid x^{(i)})\approx 1$ when
+$x^{(i)}\in V_{+}$.
+
+\ifnum\solutions=1 {
+  \input{02-posonly/02-estimate-alpha-sol}
+} \fi

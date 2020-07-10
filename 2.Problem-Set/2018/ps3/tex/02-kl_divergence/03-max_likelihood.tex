@@ -1,0 +1,57 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item\subquestionpoints{5}
+\textbf{KL and maximum likelihood.}
+    Consider a density estimation problem, and suppose we are given a
+    training set $\{x^{(i)}; i=1,\ldots, m\}$.  Let the empirical
+    distribution be $\hat{P}(x) = \frac{1}{m}\sum_{i=1}^{m}
+    1\{x^{(i)}=x\}$. ($\hat{P}$ is just the uniform distribution over
+    the training set; i.e., sampling from the empirical distribution is
+    the same as picking a random example from the training set.)
+
+    \iffalse
+    Suppose we have some family of distributions $P(X; \theta)$
+    parameterized by $\theta$.
+    % (If you like, think of $P_\theta(x)$ as an alternative notation
+    % for $P(x;\theta)$.)
+    Prove that finding the maximum likelihood estimate for the parameter
+    $\theta$ is equivalent to finding $P(X;\theta)$ with minimal KL
+    divergence from $\hat{P}$. I.e. prove:
+    \[
+    \arg \min_{\theta} \KL(\hat{P}(X)\|P(X;\theta)) = \arg \max_{\theta}
+    \sum_{i=1}^m \log P((x^{(i)}; \theta))
+    \]
+    \fi
+
+    Suppose we have some family of distributions $P_\theta$
+    parameterized by $\theta$.  (If you like, think of $P_\theta(x)$ as
+    an alternative notation for $P(x;\theta)$.)  Prove that finding the
+    maximum likelihood estimate for the parameter $\theta$ is equivalent
+    to finding $P_{\theta}$ with minimal KL divergence from $\hat{P}$.
+    I.e. prove:
+    \[
+    \arg \min_{\theta} \KL(\hat{P}\|P_{\theta}) = \arg \max_{\theta}
+    \sum_{i=1}^m \log P_{\theta}(x^{(i)})
+    \]
+
+    {\bf Remark.} Consider the relationship between parts (b-c) and
+    multi-variate Bernoulli Naive Bayes parameter estimation. In the
+    Naive Bayes model we assumed $P_{\theta}$ is of the following form:
+    $P_{\theta}(x,y) = p(y)\prod_{i=1}^n p(x_i|y)$.  By the chain rule
+    for KL divergence, we therefore have:
+    $$ \KL(\hat{P}\|P_{\theta}) = \KL(\hat{P}(y)\|p(y)) + \sum_{i=1}^n
+    \KL(\hat{P}(x_i|y)\|p(x_i|y)).$$ This shows that finding the maximum
+    likelihood/minimum KL-divergence estimate of the parameters
+    decomposes into $2n+1$ independent optimization problems: One for
+    the class priors $p(y)$, and one for each of the conditional
+    distributions $p(x_i|y)$ for each feature $x_i$ given each of the
+    two possible labels for $y$.  Specifically, finding the maximum
+    likelihood estimates for each of these problems individually results
+    in also maximizing the likelihood of the joint distribution.  (If
+    you know what Bayesian networks are, a similar remark applies to
+    parameter estimation for them.)
+
+\ifnum\solutions=1 {
+  \input{02-kl_divergence/03-max_likelihood_sol}
+} \fi

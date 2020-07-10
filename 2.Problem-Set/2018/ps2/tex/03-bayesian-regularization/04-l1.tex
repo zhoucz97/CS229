@@ -1,0 +1,29 @@
+\item \subquestionpoints{5} Next, consider the Laplace distribution, whose density is
+given by
+
+\begin{align*}
+  f_{\mathcal{L}}(z|\mu ,b)={\dfrac{1}{2b}}
+  \exp \left(-{\dfrac{|z-\mu |}{b}}\right).
+\end{align*}
+
+
+As before, consider a linear regression model given by
+$y=x^T\theta+\epsilon$ where $\epsilon \sim \mathcal{N}(0,\sigma^2)$. Assume a Laplace
+prior on this model, where each parameter $\theta_i$ is marginally independent, and
+is distributed as $\theta_i \sim \mathcal{L}(0,b)$.
+
+Show that $\theta_\text{MAP}$ in this case is equivalent to the solution of linear
+regression with $L_1$ regularization, whose loss is specified as
+
+$$J(\theta) = || X\theta - \vec{y} ||_2^2 + \gamma ||\theta||_1 $$
+
+Also, what is the value of $\gamma$?
+
+\ifnum\solutions=1 {
+  \input{03-bayesian-regularization/04-l1-sol}
+} \fi
+
+
+\textbf{Note:} A closed form solution for linear regression problem with $L_1$ regularization
+does not exist. To optimize this, we use gradient descent with a random initialization
+and solve it numerically.

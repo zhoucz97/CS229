@@ -1,0 +1,18 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item\subquestionpoints{3}
+\textbf{Comparison of Unsupervised and Semi-supervised EM.}
+Briefly describe the differences you saw in unsupervised \emph{vs.} semi-supervised EM for each of the following:
+\begin{enumerate}[label=\roman*.]
+    \item Number of iterations taken to converge.
+    \item Stability (\emph{i.e.,} how much did assignments change with different random initializations?)
+    \item Overall quality of assignments.
+\end{enumerate}
+
+\textbf{Note:} The dataset was sampled from a mixture of three low-variance Gaussian distributions, and a fourth, high-variance Gaussian distribution. This should be useful in determining the overall quality of the assignments that were found by the two algorithms.
+
+
+\ifnum\solutions=1 {
+  \input{04-semi_supervised_em/06-comparison-sol}
+} \fi

@@ -1,0 +1,19 @@
+\item \subquestionpoints{5}
+For each of these possible modifications, state whether or not it would lead to
+the provided training algorithm converging on datasets such as $B$. Justify your
+answers.
+\begin{enumerate}
+  \item Using a different constant learning rate.
+  \item Decreasing the learning rate over time (e.g. scaling the initial
+  learning rate by $1/t^2$, where $t$ is the number of gradient descent
+  iterations thus far).
+  \item Linear scaling of the input features.
+  \item Adding a regularization term $\|\theta\|_2^2$ to the loss function.
+  \item Adding zero-mean Gaussian noise to the training data or labels.
+\end{enumerate}
+ 
+\ifnum\solutions=1 {
+  \input{01-stability/03-modifications-sol}
+} \fi
+
+ 

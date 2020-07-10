@@ -1,0 +1,93 @@
+Problem Set 2: Released
+We have released Problem Set 2: ps2.zip Submissions are due Wednesday 10/31 at 11:59 PM, on Gradescope. As a reminder, you have 7 late days, but no submissions will be accepted after Saturday 11/3 at 11:59 PM.
+
+ 
+
+Please read the following carefully, as we’ve made significant updates to the problem set compared to previous offerings of this course.
+
+ 
+
+Updates
+
+ 
+
+10/26: Add missing .gitkeep file
+10/25: Fix incorrect returns comment in problem 6, a typo in the last statement of the update rule in problem 5, and be more explicit about distributions in problem 3.
+
+10/22: Remove accidentally included incorrect plots and results.
+
+10/20: Update problem 5 to have y in (0,1) to match both code and other problems. We will accept solutions for either the old setup (-1, 1) or the new setup (0, 1).
+
+10/19: Make the plots for problem 5 look a bit nicer (no correctness changes as we are not grading plots for this problem). Fix an incorrect function name in the PDF for problem 6.
+
+ 
+
+Starter Code
+
+ 
+
+This year we have switched to Python for coding parts of assignments. You must use our starter codebase, which is written in Python 3.6+ with the numpy and matplotlib libraries only. Under no circumstances will there be any exceptions to this environment.
+
+ 
+
+Details on how to re-create our environment and complete your assignment are provided in README.md file of the zip file.
+
+ 
+
+Written Components
+
+ 
+
+Our zip file contains starter TeX code for the writeup. Though not mandatory, we strongly suggest you build off of it for your writeup. We include a Makefile for compiling the TeX code locally. However, you may also use an online TeX editor such as Overleaf, in which case you should do the following:
+
+ 
+
+1. Unzip the starter code
+2. Zip the tex folder
+3. When creating a New Project on Overleaf, choose "Upload Project" and upload the zipped tex folder.
+
+ 
+
+Submission Instructions
+
+ 
+
+There are two assignments on Gradescope: Homework 2 and Homework 2 Code. 
+
+ 
+
+Please submit your writeup in PDF form to the Homework 2 assignment, tagging each part separately. Note that some of the coding parts of the homework do not have a corresponding written component, in which case there will be no option for you to tag them.
+
+ 
+
+Please submit your code by running make_zip.py and uploading the file submission.zip to the Homework 2 Code assignment. The auto-grader will immediately run your code on the test sets (budget ~ 5-10 minutes) and check that (1) your code runs successfully, and (2) it produces output files of the correct format. You should receive this feedback immediately, for each subpart that involves coding. We then have additional hidden tests to grade the correctness of your submissions, which will be released after the assignment is due. You can submit as many times as you want before the deadline.
+
+ 
+
+Collaboration
+
+ 
+
+As a reminder, our collaboration policy is the following. While we encourage students to form study groups, each student must write down the solutions independently, and without referring to written notes from the joint session. In addition, each student should write on the problem set the names of people with whom s/he collaborated.
+
+ 
+
+Furthermore, we expect students not to copy, refer to, or look at online solutions to our questions in preparing their answers. It is an honor code violation to intentionally refer to a previous year's solutions. 
+
+ 
+
+Miscellaneous
+
+ 
+
+We've created pinned posts on Piazza to keep discussion for each question organized. Please use these posts to ask for clarifications on the assignment, instead of creating new questions.
+
+ 
+
+Any emailed late submissions that miss the hard deadline of Saturday 11/3 at 11:59 PM will not be entertained, even if only by a minute. This is in the interest of being fair to those who took extra care to submit on time.
+
+ 
+
+ 
+
+We strongly recommend that you start early. Best of luck.

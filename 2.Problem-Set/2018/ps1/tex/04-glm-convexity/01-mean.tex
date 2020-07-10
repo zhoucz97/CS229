@@ -1,0 +1,15 @@
+\clearpage
+\item \subquestionpoints{5}
+Derive an expression for the mean of the distribution. Show that
+$\mathbb{E}[Y; \eta] = \frac{\partial}{\partial\eta}a(\eta)$ (note that
+$\mathbb{E}[Y; \eta] = \mathbb{E}[Y\mid X; \eta]$ since $\eta = \theta^T x$).
+In other words, show that the mean of an exponential family distribution is the
+first derivative of the log-partition function with respect to the natural
+parameter.
+
+\textbf{Hint:} Start with observing that $\frac{\partial}{\partial \eta} \int
+p(y;\eta) dy = \int \frac{\partial}{\partial \eta} p(y;\eta) dy$.
+
+\ifnum\solutions=1{
+  \input{04-glm-convexity/01-mean-sol}
+}\fi

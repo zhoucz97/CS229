@@ -1,0 +1,23 @@
+\item\subquestionpoints{5}
+\textbf{Nonnegativity.}
+Prove the following:
+$$\forall P, Q  \ \ \KL(P\|Q) \geq 0$$
+
+and
+
+\[
+\KL(P\|Q) = 0 \ \ \ \mbox{ if and only if } P=Q.
+\]
+
+[Hint: You may use the following result, called {\bf Jensen's
+inequality}.  If $f$ is a convex function, and $X$ is a random
+variable, then $E[f(X)] \geq f(E[X])$. Moreover, if $f$ is strictly
+convex ($f$ is convex if its Hessian satisfies $H \geq 0$; it is
+\emph{strictly} convex if $H > 0$; for instance $f(x) = -\log x$ is
+strictly convex), then $E[f(X)] = f(E[X])$ implies that $X=E[X]$
+with probability 1; i.e., $X$ is actually a constant.] \\
+
+
+\ifnum\solutions=1 {
+  \input{02-kl_divergence/01-nonnegative_sol}
+} \fi

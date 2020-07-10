@@ -1,0 +1,11 @@
+\item \subquestionpoints{3} Show that $\theta_{\text{MAP}} =
+\operatorname*{argmax}_\theta p(y|x, \theta) p(\theta)$ if we assume that
+$p(\theta) = p(\theta | x)$. The assumption that $p(\theta) = p(\theta | x)$
+will be valid for models such as linear regression where the input $x$
+are not explicitly modeled by $\theta$.
+(Note that this means $x$ and $\theta$ are marginally independent, but not
+conditionally independent when $y$ is given.)
+
+\ifnum\solutions=1 {
+  \input{03-bayesian-regularization/01-argmax-sol}
+} \fi

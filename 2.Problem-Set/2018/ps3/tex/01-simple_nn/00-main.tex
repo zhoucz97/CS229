@@ -1,0 +1,32 @@
+\clearpage
+\item \points{20} {\bf A Simple Neural Network}
+
+Let $X = \{x^{(1)}, \cdots, x^{(m)}\}$ be a dataset of $m$ samples with 2 features, i.e $x^{(i)} \in \mathbb{R}^2$. The samples are classified into 2 categories with labels $ y^{(i)} \in \{0, 1\}$. A scatter plot of the dataset is shown in Figure $\ref{fig:nn_plot}$:
+	\begin{figure}[htbp] 
+		\centering
+		\includegraphics[scale=0.5]{../data/nn_plot.pdf}
+		\caption{Plot of dataset $X$.}
+		\label{fig:nn_plot}
+	\end{figure}
+
+	The examples in class $1$ are marked as as ``$\times$" and examples in class $0$ are marked as ``$\circ$". We want to perform binary classification using a simple neural network with the architecture shown in Figure $\ref{fig:nn_arc}$:
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.2, trim = 0 0 360 0, clip]{../data/nn_architecture.pdf}
+		\caption{Architecture for our simple neural network.}
+		 \label{fig:nn_arc}
+	\end{figure}
+
+	Denote the two features $x_1$ and $x_2$, the three neurons in the hidden layer $h_1, h_2$, and $h_3$, and the output neuron as $o$. Let the weight from $x_i$ to $h_j$ be $w_{i, j}^{[1]}$ for $i \in \{1, 2\}, j \in \{1, 2, 3\}$, and the weight from $h_j$ to $o$ be $w_{j}^{[2]}$. Finally, denote the intercept weight for $h_j$ as $w_{0, j}^{[1]}$, and the intercept weight for $o$ as $w_{0}^{[2]}$. For the loss function, we'll use average squared loss instead of the usual negative log-likelihood:
+  $$l = \frac{1}{m}\sum_{i=1}^{m}(o^{(i)} - y^{(i)})^2,$$
+  where $o^{(i)}$ is the result of the output neuron for example $i$.
+
+\begin{enumerate}
+
+  \input{01-simple_nn/01-sigmoid}
+
+  \input{01-simple_nn/02-step_function}
+  
+  \input{01-simple_nn/03-linear}
+
+\end{enumerate}

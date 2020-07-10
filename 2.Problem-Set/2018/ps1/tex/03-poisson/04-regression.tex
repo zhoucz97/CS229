@@ -1,0 +1,20 @@
+\clearpage
+\item \subquestionpoints{7} \textbf{Coding problem.}
+Consider a website that wants to predict its
+daily traffic. The website owners have collected a dataset of past traffic to
+their website, along with some features which they think are useful in
+predicting the number of visitors per day. The dataset is split into 
+train/valid/test sets and follows the same format as Datasets 1-3:
+\begin{center}
+	\url{data/ds4_{train,valid}.csv}
+\end{center}
+We will apply Poisson regression to model the number of visitors per day.
+Note that applying Poisson regression in particular assumes that the data
+follows a Poisson distribution whose natural parameter is a linear
+combination of the input features (\emph{i.e.,} $\eta = \theta^T x$).
+In \texttt{src/p03d\_poisson.py}, implement Poisson regression for this dataset
+and use gradient ascent to maximize the log-likelihood of $\theta$.
+
+\ifnum\solutions=1 {
+  \input{03-poisson/04-regression-sol}
+} \fi

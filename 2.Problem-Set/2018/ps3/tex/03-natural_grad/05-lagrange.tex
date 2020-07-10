@@ -1,0 +1,68 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item \subquestionpoints{8} \textbf{Natural Gradient}
+
+Now we move on to calculating the natural gradient. Recall that we want to maximize the log-likelihood by moving only by a fixed $\KL$ distance from the current position. In the previous sub-question we came up with a way to approximate $\KL$ distance with Fisher Information. Now we will set up the constrained optimization problem that will yield the natural gradient update $d$. Let the log-likelihood objective be $\ell(\theta) = \log p(y;\theta)$. Let the $\KL$ distance we want to move by, be some small positive constant $c$. The natural gradient update $d^*$ is
+
+\begin{align*}
+d^* &= \arg\max_d \ell(\theta + d) \quad \text{subject to} \quad \KL(p_\theta||p_{\theta + d}) = c & \text{(1)}
+\end{align*}
+
+First we note that we can use Taylor approximation on $\ell(\theta + d) \approx \ell(\theta) + d^T\nabla_{\theta'}\ell(\theta')|_{\theta'=\theta}$. Also note that we calculated the Taylor approximation $\KL(p_\theta||p_{\theta+d})$ in the previous subproblem. We shall substitute both these approximations into the above constrainted optimization problem.
+
+In order to solve this constrained optimization problem, we employ the \emph{method of Lagrange multipliers}. If you are familiar with Lagrange multipliers, you can proceed directly to solve for $d^*$. If you are not familiar with Lagrange multipliers, here is a simplified introduction. (You may also refer to a slightly more comprehensive introduction in the Convex Optimization section notes, but for the purposes of this problem, the simplified introduction provided here should suffice).
+
+Consider the following constrained optimization problem
+$$d^\ast =\arg\max_d f(d) \quad \text{subject to} \quad g(d)=c$$
+The function $f$ is the objective function and $g$ is the constraint. We instead optimize the \emph{Lagrangian} $\mathcal{L}(d,\lambda)$, which is defined as
+
+$$\mathcal{L}(d,\lambda) = f(d) - \lambda [ g(d)-c ]$$
+
+with respect to both $d$ and $\lambda$. Here $\lambda \in \mathbb{R}_+$ is called the Lagrange multiplier. In order to optimize the above, we construct the following system of equations:
+
+\begin{align*}
+ \nabla_d \mathcal{L}(d,\lambda) &= 0, &\text{(a)} \\
+ \nabla_\lambda \mathcal{L}(d,\lambda) &= 0. &\text{(b)}
+\end{align*}
+
+So we have two equations (a and b above) with two unknowns ($d$ and $\lambda$), which can be sometimes be solved analytically (in our case, we can).
+
+The following steps guide you through solving the constrained optimization problem:
+
+\begin{itemize}
+\item 
+Construct the Lagrangian for the constrained optimization problem (1) with the Taylor approximations substituted in for both the objective and the constraint.
+
+
+
+\item 
+Then construct the system of linear equations (like (a) and (b)) from the Lagrangian you obtained.
+
+
+\item
+
+From (a), come up with an expression for $d$ that \emph{involves} $\lambda$.
+
+
+At this stage we have already found the ``direction'' of the natural gradient $d$, since $\lambda$ is only a positive scaling constant. For most practical purposes, the solution we obtain here is sufficient. This is because we almost always include a learning rate hyperparameter in our optimization algorithms, or perform some kind of a line search for algorithmic stability. This can make the exact calculation of $\lambda$ less critical. Let's call this expression $\tilde{d}$ (involving $\lambda$) as the \emph{unscaled natural gradient}. Clearly state what is $\tilde{d}$ as a function of $\lambda$.
+
+
+The remaining steps are to figure out the value of the scaling constant $\lambda$ along the direction of $d$, for completeness.
+
+\item 
+
+Plugin that expression for $d$ into (b). Now we have an equation that has $\lambda$ but not $d$. Come up with an expression for $\lambda$ that does \emph{not include} $d$.
+
+\item
+
+Plug that expression for $\lambda$ (without $d$) back into (a). Now we have an equation that has $d$ but not $\lambda$. Come up with an expression for $d$ that does \emph{not include} $\lambda$.
+
+\end{itemize}
+
+
+The expression fof $d$ obtained this way will be the desired natural gradient update $d^*$. Clearly state and highlight your final expression for $d^*$. This expression cannot include $\lambda$.
+
+\ifnum\solutions=1 {
+  \input{03-natural_grad/05-lagrange_sol}
+} \fi

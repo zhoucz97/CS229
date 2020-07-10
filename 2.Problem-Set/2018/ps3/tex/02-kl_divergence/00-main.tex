@@ -1,0 +1,129 @@
+\clearpage
+\item \points{15} {\bf KL divergence and Maximum Likelihood}
+
+The Kullback-Leibler (KL) divergence is a measure of how much
+one probability distribution is different from a second one. It is a concept that originated in Information Theory, but has made its
+way into several other fields, including Statistics, Machine Learning,
+Information Geometry, and many more. In Machine Learning, the KL
+divergence plays a crucial role, connecting various concepts
+that might otherwise seem unrelated.
+
+
+In this problem, we will introduce KL divergence over discrete
+distributions, practice some simple manipulations, and see its
+connection to Maximum Likelihood Estimation.
+
+The \emph{KL divergence} between two discrete-valued
+distributions $P(X), Q(X)$  over the outcome space $\mathcal{X}$ is defined as follows\footnote{If $P$ and
+  $Q$ are densities for continuous-valued random variables, then the
+  sum is replaced by an integral, and everything stated in this
+  problem works fine as well.  But for the sake of simplicity, in this
+  problem we'll just work with this form of KL divergence for
+  probability mass functions/discrete-valued distributions.}:
+
+$$\KL(P\|Q) = \sum_{x \in \mathcal{X}}P(x)\log\frac{P(x)}{Q(x)}$$
+
+For notational convenience, we assume $P(x)>0, \forall x$.
+(One other standard thing to do is to adopt the convention that
+``$0 \log 0 = 0$.'')  Sometimes, we also write the KL divergence more explicitly as
+$\KL(P||Q) = \KL(P(X)||Q(X))$.
+
+\emph{Background on Information Theory}
+
+Before we dive deeper, we give a brief (optional) Information Theoretic
+background on KL divergence. While this introduction is not necessary
+to answer the assignment question, it may help you better understand
+and appreciate why we study KL divergence, and how Information Theory
+can be relevant to Machine Learning.
+
+We start with the \emph{entropy} $H(P)$ of a probability distribution $P(X)$, which is defined as
+
+$$ H(P) = -\sum_{x \in \mathcal{X}} P(x) \log P(x). $$
+
+Intuitively, entropy measures how dispersed a probability
+distribution is. For example, a uniform distribution is considered to have
+very high entropy (i.e. a lot of uncertainty), whereas a distribution that assigns
+all its mass on a single point is considered to have zero entropy (i.e. no uncertainty). Notably, it can be shown that among continuous distributions over $\mathbb{R}$, the Gaussian 
+distribution $\mathcal{N}(\mu,\sigma^2)$ has the highest entropy (highest uncertainty) among all possible distributions that have the given mean $\mu$ and variance $\sigma^2$.
+
+To further solidify our intuition, we present motivation from communication theory. Suppose we want to communicate from a source to a destination, and our messages are always (a sequence of) discrete symbols over space $\mathcal{X}$ (for example, $\mathcal{X}$ could be letters $\{ \text{a}, \text{b}, \dots, \text{z} \}$).
+We want to construct an encoding scheme for our symbols in the form of sequences of binary bits
+that are transmitted over the channel. Further, suppose that in the long run the
+frequency of occurrence of symbols follow a probability distribution $P(X)$. This
+means, in the long run, the fraction of times the symbol $x$ gets transmitted is $P(x)$.
+
+A common desire is to construct an encoding scheme such that the average number of bits
+per symbol transmitted remains as small as possible. Intuitively, this means we want very frequent
+symbols to be assigned to a bit pattern having a small number of bits. Likewise, because we
+are interested in reducing the average number of bits per symbol in the long term,
+it is tolerable for infrequent words to be assigned to bit patterns having a
+large number of bits, since their low frequency has little
+effect on the long term average. The encoding scheme can be as complex as we desire, for example,
+a single bit could possibly represent a long sequence of multiple symbols (if
+that specific pattern of symbols is very common). The entropy of a probability distribution
+$P(X)$ is its optimal bit rate, i.e., the lowest average bits per message that can possibly be achieved if
+the symbols $x \in \mathcal{X}$ occur according to $P(X)$. It
+does not specifically tell us \emph{how} to construct that optimal encoding scheme. It only
+tells us that no encoding can possibly give us a lower long term bits per message
+than $H(P)$.
+
+To see a concrete example, suppose our messages have a vocabulary of $K=32$ symbols,
+and each symbol has an equal probability of transmission in the long term (i.e, uniform
+probability distribution). An encoding scheme that
+would work well for this scenario would be to have $\log_2 K$ bits per symbol, and assign
+each symbol some unique combination of the $\log_2 K$ bits. In fact, it turns out that
+this is the most efficient encoding one can come up with for the uniform distribution
+scenario.
+
+It may have occurred to you by now that the long term average number of bits per message depends only
+on the frequency of occurrence of symbols. The encoding scheme of scenario A can in theory be
+reused in scenario B with a different set of symbols (assume equal vocabulary size for simplicity),
+with the same long term efficiency, as long as the symbols of scenario B follow the same probability
+distribution as the symbols of scenario A. It might also have occured to you, that reusing the encoding scheme
+designed to be optimal for scenario A, for messages in scenario B having a \emph{different probability} of symbols, will always
+be suboptimal for scenario B. To be clear, we do not need know \emph{what} the specific optimal
+schemes are in either scenarios. As long as we know the distributions of their symbols,
+we can say that the optimal scheme designed for scenario A will be suboptimal for scenario B if the
+distributions are different.
+
+Concretely, if we reuse the optimal scheme designed for a scenario having symbol distribution $Q(X)$,
+into a scenario that has symbol distribution $P(X)$, the long term average
+number of bits per symbol achieved is called the \emph{cross entropy}, denoted by $H(P, Q)$:
+
+$$H(P, Q) = -\sum_{x \in \mathcal{X}} P(x) \log Q(x). $$
+
+To recap, the entropy $H(P)$ is the best possible long term average bits per message (optimal) that
+can be achived under a symbol distribution $P(X)$ by using an encoding scheme (possibly unknown)
+specifically designed for $P(X)$. The cross entropy $H(P, Q)$ is the long term average bits per
+message (suboptimal) that results under a symbol distribution $P(X)$, by reusing an encoding
+scheme (possibly unknown) designed to be optimal for a scenario with symbol distribution $Q(X)$.
+
+Now, KL divergence is the penalty we pay, as measured in average number of bits, for using the
+optimal scheme for $Q(X)$, under the scenario where symbols are actually distributed as $P(X)$. It is
+straightforward to see this
+
+\begin{align*}
+\KL(P, Q) &= \sum_{x \in \mathcal{X}} P(x) \log\frac{P(x)}{Q(x)} \\
+&= \sum_{x \in \mathcal{X}} P(x) \log P(x) - \sum_{x\in \mathcal{X}}P(x) \log Q(x) \\
+&= H(P, Q) - H(P). \quad \text{(difference in average number of bits.)}
+\end{align*}
+
+If the cross entropy between $P$ and $Q$ is zero (and hence $\KL(P||Q) = 0$) then it necessarily
+means $P = Q$. In Machine Learning, it is a common task to find a distribution $Q$ that is ``close'' to
+another distribution $P$. To achieve this, we use $\KL(Q||P)$ to be the loss function to be optimized.
+As we will see in this question below, Maximum Likelihood Estimation, which is a commonly used
+optimization objective, turns out to be equivalent minimizing KL divergence between the training data
+(i.e. the empirical distribution over the data)
+and the model.
+
+Now, we get back to showing some simple properties of KL divergence.
+
+\begin{enumerate}
+
+  \input{02-kl_divergence/01-nonnegative}
+
+  \input{02-kl_divergence/02-chain_rule}
+
+  \input{02-kl_divergence/03-max_likelihood}
+
+\end{enumerate}

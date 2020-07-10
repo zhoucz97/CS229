@@ -1,0 +1,18 @@
+\item \subquestionpoints{5}
+Suppose that each $y^{(i)}$ and $x^{(i)}$ are conditionally independent given
+$t^{(i)}$:
+%
+\begin{equation*}
+	p(y^{(i)} = 1\mid t^{(i)} = 1, x^{(i)}) = p(y^{(i)} = 1\mid t^{(i)} = 1).
+\end{equation*}
+%
+Note this is equivalent to saying that labeled examples were selected uniformly
+at random from the set of positive examples.
+Prove that the probability of an example being labeled differs by a constant
+factor from the probability of an example being positive. That is, show that
+$p(t^{(i)} = 1\mid x^{(i)}) = p(y^{(i)} = 1\mid x^{(i)}) / \alpha$ for
+some $\alpha\in\Re$.
+
+\ifnum\solutions=1{
+\input{02-posonly/01-constant-sol}
+}\fi

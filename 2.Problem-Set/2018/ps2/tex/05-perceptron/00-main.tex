@@ -1,0 +1,26 @@
+\newpage
+\item \points{16} {\bf Kernelizing the Perceptron}
+Let there be a binary classification problem with $y \in \{0, 1\}$.  The
+perceptron uses hypotheses of the form $h_\theta(x) = g(\theta^T x)$, where
+$g(z) = \text{sign}(z) = 1$ if $z \ge 0$, $0$ otherwise.  In this problem we
+will consider a stochastic gradient descent-like implementation of the
+perceptron algorithm where each update to the parameters $\theta$ is made using
+only one training example.  However, unlike stochastic gradient descent, the
+perceptron algorithm will only make one pass through the entire training set.
+The update rule for this version of the perceptron algorithm is given by
+\begin{equation*}
+  \theta^{(i+1)} :=
+	  \theta^{(i)} + \alpha (y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)})) x^{(i+1)}
+\end{equation*}
+where $\theta^{(i)}$ is the value of the parameters after the algorithm has
+seen the first $i$ training examples. Prior to seeing any training examples,
+$\theta^{(0)}$ is initialized to $\vec{0}$.
+ 
+\begin{enumerate}
+  \input{05-perceptron/01-description}
+  
+  \input{05-perceptron/02-impl}
+  
+  \input{05-perceptron/03-failure}
+  
+\end{enumerate}

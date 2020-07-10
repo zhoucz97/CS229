@@ -1,0 +1,21 @@
+\newpage
+\item \points{22} {\bf Spam classification}
+
+In this problem, we will use the naive Bayes algorithm and an SVM to 
+build a spam classifier.  
+
+In recent years, spam on electronic media has been a growing concern.  Here, we'll build a classifier to distinguish
+between real messages, and spam messages. For this class, we will be building a classifier to detect SMS spam messages. We will be using an SMS spam dataset developed by Tiago A. Almedia and José María Gómez Hidalgo which is publicly available on \url{http://www.dt.fee.unicamp.br/~tiago/smsspamcollection} \footnote{Almeida, T.A., Gómez Hidalgo, J.M., Yamakami, A. Contributions to the Study of SMS Spam Filtering: New Collection and Results.  Proceedings of the 2011 ACM Symposium on Document Engineering (DOCENG'11), Mountain View, CA, USA, 2011.}
+
+We have split this dataset into training and testing sets and have included them in this assignment as \texttt{data/ds6\_spam\_train.tsv} and \texttt{data/ds6\_spam\_test.tsv}. See \texttt{data/ds6\_readme.txt} for more details about this dataset. Please refrain from redistributing these dataset files. The goal of this assignment is to build a classifier from scratch that can tell the difference the spam and non-spam messages using the text of the SMS message.
+
+\begin{enumerate}
+  \input{06-spam/01-input-processing}
+  
+  \input{06-spam/02-naive-bayes}
+
+  \input{06-spam/03-five-best}
+
+  \input{06-spam/04-svm}
+  
+\end{enumerate}

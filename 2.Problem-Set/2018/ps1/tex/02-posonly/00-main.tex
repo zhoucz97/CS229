@@ -1,0 +1,51 @@
+\clearpage
+\item \points{30} {\bf Incomplete, Positive-Only Labels}
+
+In this problem we will consider training binary classifiers in situations
+where we do not have full access to the labels. In particular, we consider
+a scenario, which is not too infrequent in real life, where we have labels
+only for a subset of the positive examples. All the negative examples and
+the rest of the positive examples are unlabelled.
+
+That is, we assume a dataset
+$\{(x^{(i)}, t^{(i)}, y^{(i)} )\}_{i=1}^m$, where $t^{(i)}\in\{0, 1\}$ is
+the ``true'' label, and where
+\begin{equation*}
+	y^{(i)} =
+	\begin{cases} 
+		1 & x^{(i)} \text{ is labeled} \\
+		0 & \text{otherwise}. 
+	\end{cases}
+\end{equation*}
+All labeled examples are positive, which is to say
+$p(t^{(i)} = 1\mid y^{(i)} = 1) = 1$, but unlabeled examples may be positive or
+negative. Our goal in the problem is to construct a binary classifier $h$ of
+the true label $t$, with only access to the partial labels $y$. In other words,
+we want to construct $h$ such that
+ $h(x^{(i)}) \approx p(t^{(i)} = 1\mid x^{(i)})$ as closely as
+possible, using only $x$ and $y$.
+
+\emph{Real world example: Suppose we maintain a database of proteins which
+are involved in transmitting signals across membranes. Every example added to
+the database is involved in a signaling process, but there are many proteins
+involved in cross-membrane signaling which are missing from the database.
+It would be useful to train a classifier to identify proteins that
+should be added to the database. In our notation, each example $x^{(i)}$
+corresponds to a protein, $y^{(i)} = 1$ if the protein is in the database and
+$0$ otherwise, and $t^{(i)} = 1$ if the protein is involved in a cross-membrane
+signaling process and thus should be added to the database, and $0$ otherwise.}
+
+\begin{enumerate}
+	\input{02-posonly/01-constant}
+	\input{02-posonly/02-estimate-alpha}
+	\input{02-posonly/03-train-t-labels}
+	\input{02-posonly/04-train-y-labels}
+	\input{02-posonly/05-plot}
+\end{enumerate}
+
+\textbf{Remark}: We saw that the true probability $p(t\mid x)$ was only a
+constant factor away from $p(y\mid x)$. This means, if our task is to only rank
+examples (\emph{i.e.} sort them) in a particular order (e.g, sort the proteins
+in order of being most likely to be involved in transmitting signals across
+membranes), then in fact we do not even need to estimate $\alpha$. The rank
+based on $p(y\mid x)$ will agree with the rank based on $p(t\mid x)$.

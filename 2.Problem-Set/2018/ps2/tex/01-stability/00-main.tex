@@ -1,0 +1,31 @@
+\clearpage
+\item \points{15} {\bf Logistic Regression: Training stability}
+
+In this problem, we will be delving deeper into the workings of logistic
+regression. The goal of this problem is to help you develop your skills
+debugging machine learning algorithms (which can be very different from
+debugging software in general).
+
+We have provided an implementation of logistic regression in
+\texttt{src/p01\_lr.py}, and two labeled datasets $A$ and $B$ in
+\texttt{data/ds1\_a.txt} and \texttt{data/ds1\_b.txt}.
+
+Please do not modify the code for the logistic regression training algorithm
+for this problem. First, run the given logistic regression code to train two
+different models on $A$ and $B$. You can run the code by simply executing 
+\texttt{python p01\_lr.py} in the \texttt{src} directory.
+
+\begin{enumerate}
+
+  \input{01-stability/01-a-vs-b}
+
+  \input{01-stability/02-unstable}
+
+  \input{01-stability/03-modifications}
+  
+  \input{01-stability/04-svm}
+
+\end{enumerate}
+
+\textbf{Hint:} Recall the distinction between functional margin and geometric
+margin.

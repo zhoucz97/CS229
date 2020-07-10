@@ -1,0 +1,25 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item \subquestionpoints{10} Now, suppose instead of using the sigmoid function for the activation function
+      for $h_1, h_2, h_3$ and $o$,
+      we instead used the step function $f(x)$, defined as
+		\begin{align*}
+		f(x) = \begin{cases}
+		1, x \ge 0 \\
+		0, x < 0
+		\end{cases}
+		\end{align*}
+
+Is it possible to have a set of weights that allow the neural network to classify this dataset with 100\% accuracy?
+
+If it is possible, please provide a set of weights that enable 100\% accuracy by completing \texttt{optimal\_step\_weights} within \texttt{src/p01\_nn.py} and explain your reasoning for those weights in your PDF.
+
+If it is not possible, please explain your reasoning in your PDF. (There is no need to modify \texttt{optimal\_step\_weights} if it is not possible.)
+
+
+\textbf{Hint:} There are three sides to a triangle, and there are three neurons in the hidden layer.
+
+\ifnum\solutions=1 {
+  \input{01-simple_nn/02-step_function_sol}
+} \fi

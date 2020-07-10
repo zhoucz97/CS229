@@ -1,0 +1,30 @@
+\item \subquestionpoints{10}
+In lecture we saw the average empirical loss for logistic regression:
+\begin{equation*}
+	J(\theta)
+	= -\frac{1}{m} \sum_{i=1}^m y^{(i)}\log(h_{\theta}(x^{(i)}))
+		+  (1 - y^{(i)})\log(1 - h_{\theta}(x^{(i)})),
+\end{equation*}
+where $y^{(i)} \in \{0, 1\}$, $h_\theta(x) = g(\theta^T x)$ and
+$g(z) = 1 / (1 + e^{-z})$.
+
+Find the Hessian $H$ of this function, and show that for any vector $z$, it
+holds true that
+%
+\begin{equation*}
+    z^T H z \ge 0.
+\end{equation*}
+%
+{\bf Hint:} You may want to start by showing that
+$\sum_i\sum_j z_i x_i x_j z_j = (x^Tz)^2 \geq 0$. Recall also that
+$g'(z) = g(z)(1-g(z))$.
+
+{\bf Remark:} This is one of the standard ways of showing that the matrix $H$
+is positive semi-definite, written ``$H \succeq 0$.''  This implies that $J$ is
+convex, and has no local minima other than the global one. If you have some
+other way of showing $H \succeq 0$, you're also welcome to use your method
+instead of the one above.
+
+\ifnum\solutions=1 {
+  \input{01-linreg/01-logreg-sol}
+} \fi

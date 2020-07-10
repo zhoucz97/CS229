@@ -1,0 +1,17 @@
+\item \subquestionpoints{5}
+Intuitively, some tokens may be particularly indicative of an SMS being
+in a particular class.  We can try to get an informal sense of how indicative
+token $i$ is for the SPAM class by looking at:
+\begin{equation*}
+  \log \frac{p(x_j = i| y=1)}{p(x_j = i|y=0)}
+  = \log\left(\frac{P(\hbox{token $i$} | \hbox{email is SPAM})}
+    {P(\hbox{token $i$} | \hbox{email is NOTSPAM})}\right).
+\end{equation*}
+
+Complete the \texttt{get\_top\_five\_naive\_bayes\_words} function within the provided code using the above formula in order to obtain the 5 most indicative tokens.
+
+The provided code will print out the resulting indicative tokens and then save thm to \texttt{output/p06\_top\_indicative\_words}.
+
+\ifnum\solutions=1 {
+  \input{06-spam/03-five-best-sol}
+} \fi

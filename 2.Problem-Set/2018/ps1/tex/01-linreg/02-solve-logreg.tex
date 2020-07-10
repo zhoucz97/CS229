@@ -1,0 +1,13 @@
+\clearpage
+\item \subquestionpoints{5} \textbf{Coding problem.}
+Follow the instructions in \texttt{src/p01b\_logreg.py} to train a
+logistic regression classifier using Newton's Method.
+Starting with $\theta = \vec{0}$, run Newton's Method until the updates to
+$\theta$ are small: Specifically,  train until the first iteration $k$ such
+that $\|\theta_{k} - \theta_{k-1}\|_1 < \epsilon$, where
+$\epsilon = 1\times 10^{-5}$. Make sure to write your model's predictions to
+the file specified in the code.
+
+\ifnum\solutions=1 {
+  \input{01-linreg/02-solve-logreg-sol}
+} \fi

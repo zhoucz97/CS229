@@ -1,0 +1,17 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item \subquestionpoints{2} \textbf{Fisher Information}
+
+Let us now introduce a quantity known as the Fisher information. It is defined as the covariance matrix of the score function,
+$$\mathcal{I}(\theta) = \text{Cov}_{y \sim p(y;\theta)}[\nabla_{\theta'}\log p(y;\theta')|_{\theta'=\theta}]$$
+
+Intuitively, the Fisher information represents the amount of information that a random variable $Y$ carries about a parameter $\theta$ of interest. When the parameter of interest is a vector (as in our case, since $\theta \in \mathbb{R}^n$), this information becomes a matrix. Show that the Fisher information can equivalently be given by
+
+$$\mathcal{I}(\theta)=\mathbb{E}_{y\sim p(y;\theta)}[\nabla_{\theta'} \log p(y;\theta')\nabla_{\theta'} \log p(y;\theta')^\top|_{\theta'=\theta}]$$
+
+Note that the Fisher Information is a function of the parameter. The parameter of the Fisher information is both a) the parameter value at which the score function is evaluated, and b) the parameter of the distribution with respect to which the expectation and variance is calculated.
+
+\ifnum\solutions=1 {
+  \input{03-natural_grad/02-cov_score_sol}
+} \fi

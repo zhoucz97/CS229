@@ -1,0 +1,60 @@
+\item \subquestionpoints{10} Consider a linear regression problem in which
+we want to ``weight'' different training examples differently.  Specifically,
+suppose we want to minimize
+%
+\begin{equation*}
+	J(\theta) = \frac{1}{2} \sum_{i=1}^m w^{(i)}
+		\left(\theta^Tx^{(i)} - y^{(i)}\right)^2.
+\end{equation*}
+%
+In class, we worked out what happens for the case where all the weights (the
+$w^{(i)}$'s) are the same. In this problem, we will generalize some of those
+ideas to the weighted setting.
+\begin{enumerate}
+	\item \subquestionpoints{2} Show that $J(\theta)$ can also be written
+    %
+    \begin{equation*}
+    J(\theta) = (X\theta - {y})^T W (X\theta - {y})
+    \end{equation*}
+    %
+    for an appropriate matrix $W$, and where $X$ and ${y}$ are as
+    defined in class. Clearly specify the value of each element of the matrix
+    $W$.
+
+	\item \label{item:lwr-solution} \subquestionpoints{4} If all the $w^{(i)}$'s
+    equal 1, then we saw in class that the normal equation is
+    %
+    \begin{equation*}
+    X^TX\theta = X^T{y},
+    \end{equation*}
+    %
+	and that the value of $\theta$ that minimizes $J(\theta)$ is given by
+	$(X^TX)^{-1}X^T{y}.$
+	By finding the derivative $\nabla_\theta J(\theta)$ and setting that to zero,
+	generalize
+	the normal equation to this weighted setting, and give the new value of
+	$\theta$ that minimizes
+    $J(\theta)$ in closed form as a function of $X$, $W$ and ${y}$.
+
+	\item \subquestionpoints{4} Suppose we have a dataset
+	$\{(x^{(i)}, y^{(i)});\, i=1\ldots,m\}$ of $m$ independent examples, but
+    we model the $y^{(i)}$'s as drawn from conditional distributions with
+    different levels of variance $(\sigma^{(i)})^2$. Specifically, assume the
+    model
+    %
+    \begin{equation*}
+		p(y^{(i)} | x^{(i)} ; \theta) = \frac{1}{\sqrt{2\pi}\sigma^{(i)}} \exp\left(-
+		\frac{(y^{(i)} - \theta^Tx^{(i)})^2}{2(\sigma^{(i)})^2}\right)
+	\end{equation*}
+    %
+    That is, each $y^{(i)}$ is drawn from a Gaussian distribution with mean
+    $\theta^Tx^{(i)}$ and variance $(\sigma^{(i)})^2$ (where the
+    $\sigma^{(i)}$'s are fixed, known, constants). Show that finding the
+    maximum likelihood estimate of $\theta$ reduces to solving a weighted
+	linear regression problem.  State clearly what the $w^{(i)}$'s are in terms of
+    the $\sigma^{(i)}$'s.
+\end{enumerate}
+
+\ifnum\solutions=1
+  \input{05-weighted/01-intro-sol}
+\fi

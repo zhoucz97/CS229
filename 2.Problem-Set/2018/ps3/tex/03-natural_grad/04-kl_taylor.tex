@@ -1,0 +1,17 @@
+\ifnum\solutions=1 {
+  \clearpage
+} \fi
+\item \subquestionpoints{5} \textbf{Approximating $\KL$ with Fisher Information}
+
+As we explained at the start of this problem, we are interested in the set of all distributions that are at a small fixed $\KL$ distance away from the current distribution. In order to calculate $\KL$ between $p(y;\theta)$ and $p(y;\theta+d)$, where $d \in \mathbb{R}^n$ is a small magnitude ``delta'' vector, we approximate it using the Fisher Information at $\theta$. Eventually $d$ will be the natural gradient update we will add to $\theta$. To approximate the KL-divergence with Fisher Infomration, we will start with the Taylor Series expansion of $\KL$ and see that the Fisher Information pops up in the expansion.
+
+Show that $\KL(p_{\theta}||p_{\theta+d})\approx \dfrac{1}{2}d^T\mathcal{I}(\theta)d$.
+
+Hint: Start with the Taylor Series expansion of $\KL(p_{\theta}||p_{\tilde{\theta}})$ where $\theta$ is a constant and $\tilde{\theta}$ is a variable. Later set $\tilde{\theta}= \theta + d$. Recall that the Taylor Series allows us to approximate a scalar function $f(\tilde{\theta})$ near $\theta$ by:
+\begin{align*}
+    f(\tilde{\theta})\approx f(\theta)+(\tilde{\theta}-\theta)^T\nabla_{\theta'} f(\theta')|_{\theta'=\theta} + \frac{1}{2}(\tilde{\theta}-\theta)^T \left(\nabla^2_{\theta'}f(\theta')|_{\theta'=\theta}\right) (\tilde{\theta}-\theta)
+\end{align*}
+
+\ifnum\solutions=1 {
+  \input{03-natural_grad/04-kl_taylor_sol}
+} \fi

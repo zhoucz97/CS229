@@ -1,0 +1,33 @@
+\clearpage
+\item \points{40} {\bf Linear Classifiers (logistic regression and GDA)}
+
+In this problem, we cover two probabilistic linear classifiers we have
+covered in class so far. First, a discriminative linear classifier: logistic
+regression. Second, a generative linear classifier: Gaussian discriminant
+analysis (GDA). Both the algorithms find a linear decision boundary that
+separates the data into two classes, but make different assumptions. Our goal
+in this problem is to get a deeper understanding of the similarities and
+differences (and, strengths and weaknesses) of these two algorithms.
+
+For this problem, we will consider two datasets, provided in the following
+files:
+\begin{enumerate}[label=\roman*.]
+	\item \url{data/ds1_{train,valid}.csv}
+	\item \url{data/ds2_{train,valid}.csv}
+\end{enumerate}
+Each file contains $m$ examples, one example $(x^{(i)}, y^{(i)})$ per row.
+In particular, the $i$-th row contains columns $x^{(i)}_0\in\Re$,
+$x^{(i)}_1\in\Re$, and $y^{(i)}\in\{0, 1\}$. In the subproblems that follow, we
+will investigate using logistic regression and Gaussian discriminant analysis
+(GDA) to perform binary classification on these two datasets.
+
+\begin{enumerate}
+	\input{01-linreg/01-logreg}
+	\input{01-linreg/02-solve-logreg}
+	\input{01-linreg/03-gda}
+	\input{01-linreg/04-gda-ll}
+	\input{01-linreg/05-solve-gda}
+	\input{01-linreg/06-plot-ds1}
+	\input{01-linreg/07-plot-ds2}
+	\input{01-linreg/08-extra-credit}
+\end{enumerate}

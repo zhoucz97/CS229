@@ -1,0 +1,12 @@
+\item \subquestionpoints{3} \textbf{Score function}
+
+The score function associated with $p(y;\theta)$ is defined as $\nabla_{\theta}\log p(y;\theta)$, which signifies the sensitivity of the likelihood function with respect to the parameters. Note that the score function is actually a vector since it's the gradient of a scalar quantity with respect to the vector $\theta$. 
+
+Recall that $\mathbb{E}_{y\sim p(y)}[g(y)]=\int_{-\infty}^{\infty}p(y)g(y)dy$. Using this fact, show that the expected value of the score is 0, i.e. 
+
+$$\mathbb{E}_{y\sim p(y;\theta)}[\nabla_{\theta'} \log p(y;\theta')|_{\theta'=\theta}]=0$$
+
+
+\ifnum\solutions=1 {
+  \input{03-natural_grad/01-exp_score_sol}
+} \fi

@@ -1,0 +1,37 @@
+\item \subquestionpoints{9} Let $K$ be a Mercer kernel corresponding to some
+very high-dimensional feature
+mapping $\phi$. Suppose $\phi$ is so high-dimensional (say,
+$\infty$-dimensional) that it's infeasible to ever represent $\phi(x)$
+explicitly.  Describe how you would apply the ``kernel trick'' to the
+perceptron to make it work in the high-dimensional feature space $\phi$, but
+without ever explicitly computing $\phi(x)$.
+
+[\textbf{Note:} You don't have to worry about the intercept term.  If you like,
+think of $\phi$ as having the property that $\phi_0(x) = 1$ so that this is
+taken care of.] Your description should specify:
+\begin{enumerate}[label=\roman*.]
+  \item \subquestionpoints{3} How you will (implicitly) represent the
+  high-dimensional
+    parameter vector $\theta^{(i)}$, including how the initial value
+    $\theta^{(0)} = 0$ is represented (note that $\theta^{(i)}$ is
+    now a vector whose dimension is the same as the feature vectors
+    $\phi(x)$);
+  \item \subquestionpoints{3} How you will efficiently make a prediction on a
+  new input
+    $x^{(i+1)}$.  I.e., how you will compute
+    $h_{\theta^{(i)}}(x^{(i+1)}) = g({\theta^{(i)}}^T \phi(x^{(i+1)}))$,
+    using your representation of $\theta^{(i)}$; and
+  \item \subquestionpoints{3} How you will modify the update rule given above
+  to perform an
+  update to $\theta$ on a new training example $(x^{(i+1)}, y^{(i+1)})$;
+  \emph{i.e.,} using the update rule corresponding to the feature mapping
+  $\phi$:
+  \begin{equation*}
+  \theta^{(i+1)} :=
+	  \theta^{(i)} + \alpha (y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)})) \phi(x^{(i+1)})
+  \end{equation*}
+\end{enumerate}
+
+\ifnum\solutions=1 {
+  \input{05-perceptron/01-description-sol}
+} \fi

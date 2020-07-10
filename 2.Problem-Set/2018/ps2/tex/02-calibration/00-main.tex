@@ -1,0 +1,54 @@
+\clearpage
+\item \points{10} {\bf Model Calibration}
+
+In this question we will try to understand the output $h_\theta(x)$ of the
+hypothesis function of a logistic regression model, in particular why we might
+treat the output as a probability (besides the fact that the sigmoid function
+ensures $h_\theta(x)$ always lies in the interval $(0, 1)$).
+
+When the probabilities outputted by a model match empirical observation, the
+model is said to be \emph{well calibrated} (or reliable). For example, if we
+consider a set of examples $x^{(i)}$ for which $h_\theta(x^{(i)})  \approx
+0.7$, around 70\% of those examples should have positive labels. In a
+well calibrated model, this property will hold true at every probability value.
+
+Logistic regression tends to output well calibrated probabilities (this is
+often not true with other classifiers such as Naive Bayes, or SVMs). We will
+dig a little deeper in order to understand why this is the case, and find that
+the structure of the loss function explains this property.
+
+Suppose we have a training set $\{x^{(i)},y^{(i)}\}_{i=1}^m$ with
+$x^{(i)} \in \mathbb{R}^{n+1}$ and $y^{(i)} \in \{0, 1\}$. Assume we have an
+intercept term $x_0^{(i)} = 1$ for all $i$. Let $\theta \in \mathbb{R}^{n+1}$
+be the maximum likelihood parameters learned after training a logistic
+regression model. In order for the model to be considered well calibrated,
+given any range of probabilities $(a, b)$ such that $0 \le a < b \le 1$, and
+training examples $x^{(i)}$ where the model outputs $h_\theta(x^{(i)})$ fall in
+the range $(a, b)$, the fraction of positives in that set of examples should be
+equal to the average of the model outputs for those examples. That is, the
+following property must hold:
+$$
+  \frac{\sum_{i\in I_{a,b}}  P\left(y^{(i)}=1|x^{(i)};\theta\right)}
+       {{|\{i\in I_{a,b}\}|}}
+  = \frac{\sum_{i\in I_{a,b}} \mathbb{I}\{y^{(i)} = 1\}}
+         {|\{i\in I_{a,b}\}|},
+$$
+where $P(y=1|x;\theta) = h_\theta(x) = 1/(1+\exp(-\theta^\top x))$, $I_{a,b} =
+\{ i | i \in \{1,...,m\},  h_\theta(x^{(i)}) \in (a,b)\} $ is an index set of
+all training examples $x^{(i)}$ where $h_\theta(x^{(i)}) \in (a,b)$, and $|S|$
+denotes the size of the set $S$.
+
+\begin{enumerate}
+  \input{02-calibration/01-logreg}
+  \input{02-calibration/02-accuracy}
+  \input{02-calibration/03-l2-effect}
+\end{enumerate}
+
+\textbf{Remark:}  We considered the range $(a,b) = (0, 1)$. This is the only
+range for which logistic regression is guaranteed to be calibrated on the
+training set. When the GLM modeling assumptions hold, all ranges $(a,b) \subset
+[0,1]$ are well calibrated. In addition, when the training and test set are
+from the same distribution and when the model has not overfit or underfit,
+logistic regression tends to be well calibrated on unseen test data as well.
+This makes logistic regression a very popular model in practice, especially
+when we are interested in the level of uncertainty in the model output.
